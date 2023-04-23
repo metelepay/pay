@@ -47,12 +47,12 @@
 ### 通知回调
 
 #### 验签
-也是按上方签名过程，把所有参数去掉sign后，进行ascii升序排序并且按照k1=v1&k2=v2的逻辑去生成sign，并且与MetePay通知回调中返回的sign的值进行比较来验签
+也是按上方签名过程，把所有参数去掉sign后，进行ascii升序排序并且按照k1=v1&k2=v2的逻辑去生成sign，并且与MetePay通知回调中返回的sign的值进行比较来验签，返回字符串success给matepay
 #### 参数
 |  字段 |  类型  |  必须  |  描述  |
 | ------------ | ------------ | ------------ | ------------ |
 | appId | String | 是 | 申请的appId |
-| totalAmount | BigDecimal 或 String | 是 | 请求下单的金额 2位小数，至少1元 ，如1.00 |
+| totalAmount | BigDecimal 或 String | 是 | 请求下单的金额 2位小数 |
 | outTradeNo | String | 是 | 商户系统的订单号 |
 | tradeNo | String | 是 | MetePay支付系统的订单号 |
 | tradeStatus | OrderState | 是 | 订单状态，详情见下方OrderState描述 |
