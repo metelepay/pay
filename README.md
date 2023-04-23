@@ -52,7 +52,7 @@
 |  字段 |  类型  |  必须  |  描述  |
 | ------------ | ------------ | ------------ | ------------ |
 | appId | String | 是 | 申请的appId |
-| totalAmount | BigDecimal 或 String | 是 | 请求下单的金额 |
+| totalAmount | BigDecimal 或 String | 是 | 请求下单的金额 2位小数，至少1元 ，如1.00 |
 | outTradeNo | String | 是 | 商户系统的订单号 |
 | tradeNo | String | 是 | MetePay支付系统的订单号 |
 | tradeStatus | OrderState | 是 | 订单状态，详情见下方OrderState描述 |
