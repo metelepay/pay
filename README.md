@@ -25,7 +25,7 @@
 | ALIPAY_WEB  | 支付宝PC   |
 | ALIPAY_WAP  |  支付宝H5  |
 | ALIPAY_F2F  |  支付宝扫码  |
-| WXPAY       |   微信支付 |
+| WXPAY       |   微信扫码 |
 
 ##### 签名过程
 
