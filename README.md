@@ -25,6 +25,7 @@
 | ALIPAY_WEB  | 支付宝PC   |
 | ALIPAY_WAP  |  支付宝H5  |
 | ALIPAY_F2F  |  支付宝扫码  |
+| WXPAY       |   微信支付 |
 
 ##### 签名过程
 
@@ -39,6 +40,7 @@
 |  键 |  说明  |
 | ------------ | ------------ |
 | url  | 支付的url地址   |
+| tradeNo  | metepay的订单号   |
 | type  |  该url需要做的操作，值为redirect或qrcode，分别对应跳转url支付和展现二维码支付  |
 
 
