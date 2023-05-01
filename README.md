@@ -98,22 +98,39 @@
 2. 用md5加密算法对signStr进行加密得到md5Str
 3. md5Str与该下单的appId设置的密钥进行拼接得到finalMd5Str
 4. 对finalMd5再次进行md5加密，得到sign的值
-举例，假设密钥为123456
-如参数为以下json
-json
+   举例，假设密钥为123456
+   如参数为以下json
+
+```json
 {"appId":"1635621825763438594","method":"ALIPAY_F2F","outTradeNo":"20230427200222","totalAmount":"1.00"}
+```
+
 则signStr为
-json
+
+```json
 appId=1635621825763438594&method=ALIPAY_F2F&outTradeNo=20230427200222&totalAmount=1.00
+```
+
 md5Str为
-json
+
+```json
 096c74e81a8e795a437d141e0027ce9d
+```
+
 finalMd5Str为
-json
+
+```json
 096c74e81a8e795a437d141e0027ce9d123456
+```
+
 sign为
-json
+
+```json
 867bd03fe384388285bb74e16337fad9
+```
+
 最终的json数据为
-json
+
+```json
 {"appId":"1635621825763438594","method":"ALIPAY_F2F","outTradeNo":"20230427200222","sign":"867bd03fe384388285bb74e16337fad9","totalAmount":"1.00"}
+```
