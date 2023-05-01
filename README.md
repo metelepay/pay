@@ -36,7 +36,6 @@
 | tradeNo  | String | 是 | MetePay的订单号   |
 | type  |  String | 是 | 该url需要做的操作，值为redirect或qrcode，分别对应跳转url支付和展现二维码支付  |
 
----
 
 ## 订单查询
 
