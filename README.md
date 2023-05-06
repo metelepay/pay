@@ -49,7 +49,6 @@
 |  字段 |  类型  |  必须  |  描述  |
 | ------------ | ------------ | ------------ | ------------ |
 | appId | String | 是 | 申请的appId |
-| method | OrderMethod | 是 | 请求下单的方式 |
 | outTradeNo | String | 是 | 商户系统的订单号 |
 | sign | String | 是 | 签名，详情见最下方签名过程 |
 
