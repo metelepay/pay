@@ -11,13 +11,13 @@
 
 #### 请求参数
 
-|  字段 |  类型  |  必须  |  描述  |
-| ------------ | ------------ | ------------ | ------------ |
-| appId | String | 是 | 申请的appId |
+|  字段 | 类型          |  必须  |  描述  |
+| ------------ |-------------| ------------ | ------------ |
+| appId | String      | 是 | 申请的appId |
 | method | OrderMethod | 是 | 请求下单的方式，详情见下方OrderMethod描述 |
-| totalAmount | BigDecimal | 是 | 请求下单的金额，2位小数，至少1元 ，如1.00 |
-| outTradeNo | String | 是 | 商户系统的订单号 |
-| sign | String | 是 | 签名，详情见最下方签名过程 |
+| totalAmount | String      | 是 | 请求下单的金额，2位小数，至少1元 ，如1.00 |
+| outTradeNo | String      | 是 | 商户系统的订单号 |
+| sign | String      | 是 | 签名，详情见最下方签名过程 |
 
 ##### OrderMethod类型
 |  键 |  说明  | 状态   |
@@ -30,11 +30,12 @@
 #### 返回参数
 如正确下单，则会返回以下参数
 
-|  字段 |  类型  |  必须  |  描述  |
-| ------|------ | ------|------ |
-| url  | String | 是 | 支付的url地址   |
-| tradeNo  | String | 是 | MetePay的订单号   |
-| type  |  String | 是 | 该url需要做的操作，值为redirect或qrcode，分别对应跳转url支付和展现二维码支付  |
+| 字段         |  类型  |  必须  | 描述                                               |
+|------------|------ | ------|--------------------------------------------------|
+| url        | String | 是 | 支付的url地址，商户需要自行展示二维码或跳转                          |
+| cashierUrl | String | 是 | MetePay收银台的url地址，直接跳转即可                                 |
+| tradeNo    | String | 是 | MetePay的订单号                                      |
+| type       |  String | 是 | 该url需要做的操作，值为redirect或qrcode，分别对应跳转url支付和展现二维码支付 |
 
 
 ## 订单查询
@@ -55,14 +56,14 @@
 #### 返回参数
 如正确下单，则会返回以下参数
 
-|  字段 |  类型  |  必须  |  描述  |
-| ------|------ | --------|---- |
-| appId | String | 是 | 申请的appId |
-| tradeNo  | String | 是 | MetePay的订单号   |
-| outTradeNo | String | 是 | 商户系统的订单号 |
-| totalAmount | BigDecimal | 是 | 下单金额 |
-| createTime | Date | 是 | 创建时间 |
-| tradeStatus  |  OrderStatus | 是 | 订单状态  |
+|  字段 | 类型          |  必须  |  描述  |
+| ------|-------------| --------|---- |
+| appId | String      | 是 | 申请的appId |
+| tradeNo  | String      | 是 | MetePay的订单号   |
+| outTradeNo | String      | 是 | 商户系统的订单号 |
+| totalAmount | String      | 是 | 下单金额 |
+| createTime | Date        | 是 | 创建时间 |
+| tradeStatus  | OrderStatus | 是 | 订单状态  |
 
 ##### OrderStatus类型
 |  键 |  说明  |
@@ -80,20 +81,20 @@
 #### 验签
 查看最下方的签名过程，把所有参数去掉sign后，进行ascii升序排序并且按照k1=v1&k2=v2的逻辑去生成sign，并且与MetePay通知回调中返回的sign的值进行比较来验签，商户自己处理完逻辑后返回字符串success给MetePay，则MetePay不会再次发送通知回调给商户
 #### 参数
-|  字段 |  类型  |  必须  |  描述  |
-| ------------ | ------------ | ------------ | ------------ |
-| appId | String | 是 | 申请的appId |
-| totalAmount | BigDecimal | 是 | 请求下单的金额 2位小数，如1.00 |
-| outTradeNo | String | 是 | 商户系统的订单号 |
-| tradeNo | String | 是 | MetePay支付系统的订单号 |
+|  字段 | 类型          |  必须  |  描述  |
+| ------------ |-------------| ------------ | ------------ |
+| appId | String      | 是 | 申请的appId |
+| totalAmount | String      | 是 | 请求下单的金额 2位小数，如1.00 |
+| outTradeNo | String      | 是 | 商户系统的订单号 |
+| tradeNo | String      | 是 | MetePay支付系统的订单号 |
 | tradeStatus | OrderStatus | 是 | 订单状态 |
-| sign | String | 是 | 签名，详情见下方签名过程 |
+| sign | String      | 是 | 签名，详情见下方签名过程 |
 
 ---
 
 ## 签名过程
 
-1. 将需要签名的参数，以k1=v1&k2=v2 按照ASCII升序排序得到字符串signStr
+1. 将需要签名的参数，以k1=v1&k2=v2 按照ASCII升序排序得到字符串signStr，注意整数金额，比如1块钱要补0为1.00
 2. 用md5加密算法对signStr进行加密得到md5Str
 3. md5Str与该下单的appId设置的密钥进行拼接得到finalMd5Str
 4. 对finalMd5再次进行md5加密，得到sign的值
