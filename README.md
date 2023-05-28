@@ -3,21 +3,22 @@
 ## 下单
 
 #### 基础信息
-|  描述 |  信息  |
-| ------------ | ------------ |
-| API地址  | https://metelep.xyz/api/v1/order/create   |
-| 请求方式  |  POST  |
-| 接口数据  |  JSON  |
+| 描述                | 信息                                          |
+|-------------------|---------------------------------------------|
+| 正常下单API地址         | https://metelep.xyz/api/v1/order/create     |
+| 预下单API地址(跳转收银台模式) | https://metelep.xyz/api/v1/order/pre/create |
+| 请求方式              | POST                                        |
+| 接口数据              | JSON                                        |
 
 #### 请求参数
 
-|  字段 | 类型          |  必须  |  描述  |
-| ------------ |-------------| ------------ | ------------ |
-| appId | String      | 是 | 申请的appId |
-| method | OrderMethod | 是 | 请求下单的方式，详情见下方OrderMethod描述 |
-| totalAmount | String      | 是 | 请求下单的金额，2位小数，至少1元 ，如1.00 |
-| outTradeNo | String      | 是 | 商户系统的订单号 |
-| sign | String      | 是 | 签名，详情见最下方签名过程 |
+|  字段 | 类型          | 必须  | 描述                                   |
+| ------------ |-------------|-----|--------------------------------------|
+| appId | String      | 是   | 申请的appId                             |
+| method | OrderMethod | 是/否 | 请求下单的方式，详情见下方OrderMethod描述，预下单不需要此字段 |
+| totalAmount | String      | 是   | 请求下单的金额，2位小数，至少1元 ，如1.00             |
+| outTradeNo | String      | 是   | 商户系统的订单号                             |
+| sign | String      | 是   | 签名，详情见最下方签名过程                        |
 
 ##### OrderMethod类型
 |  键 |  说明  | 状态   |
@@ -30,13 +31,21 @@
 #### 返回参数
 如正确下单，则会返回以下参数
 
-| 字段         |  类型  |  必须  | 描述                                               |
-|------------|------ | ------|--------------------------------------------------|
-| url        | String | 是 | 支付的url地址，商户需要自行展示二维码或跳转                          |
-| cashierUrl | String | 是 | MetePay收银台的url地址，直接跳转即可                                 |
-| tradeNo    | String | 是 | MetePay的订单号                                      |
-| type       |  String | 是 | 该url需要做的操作，值为redirect或qrcode，分别对应跳转url支付和展现二维码支付 |
+| 字段         |  类型  | 必须  | 描述                                                 |
+|------------|------ |-----|----------------------------------------------------|
+| url        | String | 是/否 | 支付的url地址，商户需要自行展示二维码或跳转，预下单不会返回此字段                 |
+| cashierUrl | String | 是   | MetePay收银台的url地址，直接跳转即可                            |
+| tradeNo    | String | 是   | MetePay的订单号                                        |
+| type       |  String | 是   | 建议该url需要做的操作，值为redirect或qrcode，分别对应跳转url支付和展现二维码支付 |
 
+
+**特别说明:**
+
+- 使用正常下单的API时，会同时返回url和cashierUrl，商户可以自己决定在自己的网站处理url的支付逻辑，也可以直接选择跳转到cashierUrl收银台页面（支付成功后，会跳转到商户在app里设置的跳转地址
+
+- 使用预下单的API时，只会返回cashierUrl，商户需要跳转到该cashierUrl页面
+
+---
 
 ## 订单查询
 
