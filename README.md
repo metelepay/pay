@@ -23,8 +23,8 @@
 ##### OrderMethod类型
 |  键 |  说明  | 状态   |
 | ------------ | ------------ | ------------ |
-| ALIPAY_WEB  | 支付宝PC   | 维护中   |
-| ALIPAY_WAP  |  支付宝H5  | 维护中   |
+| ALIPAY_WEB  | 支付宝PC   | 支持   |
+| ALIPAY_WAP  |  支付宝H5  | 支持   |
 | ALIPAY_F2F  |  支付宝扫码  | 支持   |
 | WXPAY       |   微信扫码 | 支持   |
 
