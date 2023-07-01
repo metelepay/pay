@@ -5,8 +5,7 @@
 #### 基础信息
 | 描述                | 信息                                          |
 |-------------------|---------------------------------------------|
-| 正常下单API地址         | https://metelep.xyz/api/v1/order/create     |
-| 预下单API地址(跳转收银台模式) | https://metelep.xyz/api/v1/order/pre/create |
+| 正常下单API地址         | https://mete.club/api/v1/order/create     |
 | 请求方式              | POST                                        |
 | 接口数据              | JSON                                        |
 
@@ -52,7 +51,7 @@
 #### 基础信息
 |  描述 |  信息  |
 | ------------ | ------------ |
-| API地址  | https://metelep.xyz/api/v1/order/query   |
+| API地址  | https://mete.club/api/v1/order/query   |
 | 请求方式  |  POST  |
 | 接口数据  |  JSON  |
 
